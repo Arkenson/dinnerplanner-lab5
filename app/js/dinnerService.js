@@ -124,6 +124,10 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
 this.DishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:25,api_key:'dvxkRYZj71vL8irJQo33bFG3o6U34O8K'});
 this.Dish = $resource('http://api.bigoven.com/recipe/:id',{api_key:'dvxkRYZj71vL8irJQo33bFG3o6U34O8K'});
 
+//Now, in the controller, if we want to search for dishes we can call Dinner.DishSearch.get({title_kw:'chicken'}) 
+//or to get a single dish we would do Dinner.Dish.get({id:12345}).
+
+
   // Angular service needs to return an object that has all the
   // methods created in it. You can consider that this is instead
   // of calling var model = new DinnerModel() we did in the previous labs
