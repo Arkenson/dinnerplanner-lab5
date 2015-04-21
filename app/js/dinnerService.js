@@ -119,76 +119,10 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
         menu.pop(dishes[id]);
     }
 
-    //function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
-    //you can use the filter argument to filter out the dish by name or ingredient (use for search)
-    //if you don't pass any filter all the dishes will be returned
-    this.getAllDishes = function (type, filter) {
-        return $(dishes).filter(function (index, dish) {
-            var found = true;
-            if (filter) {
-                found = false;
-                $.each(dish.ingredients, function (index, ingredient) {
-                    if (ingredient.name.indexOf(filter) != -1) {
-                        found = true;
-                    }
-                });
-                if (dish.name.indexOf(filter) != -1) {
-                    found = true;
-                }
-            }
-            return dish.type == type && found;
-        });
-    }
 
-    //function that returns a dish of specific ID
-    this.getDish = function (id, callback, view) {
-        var apiKey = "dvxkRYZj71vL8irJQo33bFG3o6U34O8K";
-        var url = "http://api.bigoven.com/recipe/"
-                  + id
-                  + "?api_key=" + apiKey;
-        $.ajax({
-            type: "GET",
-            dataType: 'json',
-            cache: false,
-            url: url,
-            success: function (data) {
-                console.log(data);
-                return callback(data, view);               
-            }
-        });
-
-    }
-
-//title. category är type - main dish, desserts, appetizers. 
-
-//getRecipeJson hämtar nu ut recipe beroende på vad användaren skriver för sökterm och vald food type. 
-
-    this.getRecipeJson = function (term,type,callback,view) {
-               
-        var category = type;
-        var apiKey = "dvxkRYZj71vL8irJQo33bFG3o6U34O8K";
-        var titleKeyword = term;
-        var url = "http://api.bigoven.com/recipes?pg=1&rpp=10&title_kw="
-                  + titleKeyword 
-                  + "&any_kw="
-                  + category
-                  + "&api_key="+apiKey;
-        $.ajax({
-            type: "GET",
-            dataType: 'json',
-            cache: false,
-            url: url,
-            success: function (data) {
-                //run callback
-                return callback(data.Results,view);
-            }
-        });
-    }
-
-
-
-
-
+//BigOven API calls
+this.DishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:25,api_key:'dvxkRYZj71vL8irJQo33bFG3o6U34O8K'});
+this.Dish = $resource('http://api.bigoven.com/recipe/:id',{api_key:'dvxkRYZj71vL8irJQo33bFG3o6U34O8K'});
 
   // Angular service needs to return an object that has all the
   // methods created in it. You can consider that this is instead
