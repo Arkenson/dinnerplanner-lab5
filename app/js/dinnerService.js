@@ -121,7 +121,7 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
 
 
 //BigOven API calls
-this.DishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:25,api_key:'dvxkRYZj71vL8irJQo33bFG3o6U34O8K'});
+this.DishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:10,api_key:'dvxkRYZj71vL8irJQo33bFG3o6U34O8K'});
 this.Dish = $resource('http://api.bigoven.com/recipe/:id',{api_key:'dvxkRYZj71vL8irJQo33bFG3o6U34O8K'});
 
 //Now, in the controller, if we want to search for dishes we can call Dinner.DishSearch.get({title_kw:'chicken'}) 

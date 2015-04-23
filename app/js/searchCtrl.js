@@ -15,4 +15,5 @@ dinnerPlannerApp.controller('SearchCtrl', function ($scope,Dinner) {
  }
 
 
+
 });
