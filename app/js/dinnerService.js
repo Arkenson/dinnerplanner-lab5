@@ -75,7 +75,7 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     //Adds the passed dish to the menu. If the dish of that type already exists on the menu
     //it is removed from the menu and the new one added.
     this.addDishToMenu = function (id) {
-        var apiKey = "dvxkRYZj71vL8irJQo33bFG3o6U34O8K";
+        /*var apiKey = "dvxkRYZj71vL8irJQo33bFG3o6U34O8K";
         var url = "http://api.bigoven.com/recipe/"
                   + id
                   + "?api_key=" + apiKey;
@@ -84,7 +84,7 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
             dataType: 'json',
             cache: false,
             url: url,
-            success: function (data) {   
+            success: function (data) { */  
 
 
         console.log("1. Adding a dish")
@@ -104,8 +104,8 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
             console.log(menu)
         }
 
-            }
-        });
+            //}
+        //});
 
     }
 

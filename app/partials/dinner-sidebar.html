@@ -1,11 +1,17 @@
 
 
 <!-- TODO in Lab 5: Display the items on the menu with cost for each -->
-		<div class="col-md-3">
-			People: <input type="number" ng-model="numberOfGuests" ng-change="setNumberOfGuest(numberOfGuests)"/>
-			Total number of guest: {{getNumberOfGuests()}}
-		</div>
+			<div class="row">My dinner</div>
 
-<!-- Displaying number of guests both in input box and here is redundant. It is here only for the example
-purpose so you can see how some information from the model can be retrieved. In Lab 5 you will replace 
-this with Total price of the menu -->
+			<div class="row">People: <input type="number" ng-model="numberOfGuests" ng-change="setNumberOfGuest(numberOfGuests)" style="width:20%;"/></div>
+
+			<div class="row" style="background:#DDDDDD;">
+                    <div class="col-md-9 left" style="margin-left:-15px">Dish name</div>
+                    <div class="col-md-3 right">Cost</div>
+                </div>
+            <div class="row">
+            	<div class="col-md-9 left" style="margin-left:-15px">Total price</div>
+            	<div class="col-md-3 right">{{getTotalMenuPrice()}} SEK</div>
+            </div>	
+			<!-- Total number of guest: {{getNumberOfGuests()}} -->
+		

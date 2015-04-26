@@ -1,9 +1,9 @@
-    .header-bar {
+    	.header-bar {
             background-color: rgba(255, 201, 53, 0.57);
             padding: 8px;
         }
 
-    .bg-img {
+    	.bg-img {
             background-image: url(images/Cooking_background.png);
             min-height: 600px;
         }
@@ -29,7 +29,22 @@
         .right-padding {
         	padding-right: 8px;
         }
+        .left-padding {
+        	padding-left: 8px;
+        }
 
         .top-border-solid {
         	border-top: solid;
         }
+
+                .right {
+            float:right;  
+        }
+
+        .left {
+            float:left;
+         }
+
+         .padding-left: {
+         	padding-left: 8px;
+         }

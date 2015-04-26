@@ -1,7 +1,36 @@
 <!-- We include the sidebar as it is shared across two screens. -->
-<ng-include src="'partials/dinner-sidebar.html'" ng-controller="DinnerCtrl"></ng-include>
 <div class="container">
 
+<div class="row">
+		<div class="col-md-3">
+			<ng-include src="'partials/dinner-sidebar.html'" ng-controller="DinnerCtrl"></ng-include>
+		</div>
+
+		<div class="col-md-5" style="margin-top:18px;">
+			<font size="4">{{dish.Title}}</font>
+			<br/>
+			<img src="{{dish.ImageURL}}" heigth="300" width="300">
+			<br/>
+			{{dish.Instructions}}
+		</div>
+
+		<div class="col-md-4 yellow-color" style="margin-top:18px;">
+			<div class="row" ng-repeat="ingredient in dish.Ingredients track by $index">
+				<font class="left left-padding">
+				{{ingredient.MetricDisplayQuantity}} {{ingredient.MetricUnit}} {{ingredient.Name}}</font>
+				<font class="right right-padding">{{ingredient.MetricQuantity}} SEK</font><br/>
+			</div>
+			____________________________________________ <br/>
+			<button style="margin-top:8px; margin-bottom:8px;" id='goBack' class='btn btn-warning left'>Confirm dish</button> <font class="right" style="margin-top:8px;"> SEK</font>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+
+	</div>
+	<div class="col-md-9">
+<button style="margin-top:18px" id='goBack' class='btn btn-warning'>Back to Select Dish</button>
+	</div>
 </div>
 
 <!-- TODO in Lab 5: Display the dish information including image, Description, 
