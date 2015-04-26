@@ -1,19 +1,49 @@
 <!-- We include the sidebar as it is shared across two screens. -->
-<ng-include src="'partials/dinner-sidebar.html'" ng-controller="DinnerCtrl"></ng-include>
 
-<input ng-model="query"/>
-<button ng-click="search(query)">Find</button>
-{{status}} 
-<div>
- <div style="width:200px; margin:0px; display:inline;" ng-repeat="dish in dishes track by $index">
- <img ng-src="{{dish.ImageURL120}}"/>
- <font size="4">{{dish.Title}}</font>
- 
- {{dish.Category}}
+<div class="container">
 
-  <a ng-href="#/dish/{{dish.RecipeID}}">View more</a>
-   <br ng-if="!(($index + 1) % 2)" />
- </div>
+	<div class="row yellow-color top-border-solid">
+		<div class="col-md-1">
+		
+		</div>
+		<div class="col-md-11 topandbottompadding">
+			<font class="right-padding">Find dish</font> <input ng-model="query"/>
+			<button ng-click="search(query)" class="btn btn-warning" >Find</button>
+			{{status}} 
+		</div>
+	</div>
+
+
+
+	<div class="row">
+		<div class="col-md-3">
+			<ng-include src="'partials/dinner-sidebar.html'" ng-controller="DinnerCtrl"></ng-include>
+		</div>
+
+		<div class="col-md-9">
+
+			<style type="text/css">
+			.result_box {
+				width: 20%;
+				margin: 0px;
+				display: inline-table;
+				padding: 2%;
+			}
+			</style>
+
+			<div class="result_box" ng-repeat="dish in dishes track by $index">
+				<img ng-src="{{dish.ImageURL120}}" width="100%"/>
+				<br/>
+				<font size="4">{{dish.Title}}</font>
+				<br/>
+				{{dish.Category}}
+
+				<br/>
+
+				<a ng-href="#/dish/{{dish.RecipeID}}">View more</a>
+			</div>
+		</div>
+	</div>
 
 </div>
 

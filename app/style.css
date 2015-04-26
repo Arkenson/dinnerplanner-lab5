@@ -2,3 +2,34 @@
             background-color: rgba(255, 201, 53, 0.57);
             padding: 8px;
         }
+
+    .bg-img {
+            background-image: url(images/Cooking_background.png);
+            min-height: 600px;
+        }
+
+        .bg-faded {
+            background-color: rgba(255,255,255,0.7);
+        }
+
+        .middle {
+            padding: 25px;
+            margin-top: 80px;
+        }
+
+        .yellow-color {
+        	background-color:#FFE599;
+        }
+
+        .topandbottompadding {
+            padding-top: 18px;
+            padding-bottom: 18px;
+        }
+
+        .right-padding {
+        	padding-right: 8px;
+        }
+
+        .top-border-solid {
+        	border-top: solid;
+        }
