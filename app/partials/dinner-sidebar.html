@@ -9,6 +9,10 @@
                     <div class="col-md-9 left" style="margin-left:-15px">Dish name</div>
                     <div class="col-md-3 right">Cost</div>
                 </div>
+            <div class="row" ng-repeat="item in menu track by $index">
+            	<div class="col-md-9 left" style="margin-left:-15px">{{item.Title}}</div>
+            	<div class="col-md-3 right">{{getTotalDishPrice(item)}}</div>
+            </div>
             <div class="row">
             	<div class="col-md-9 left" style="margin-left:-15px">Total price</div>
             	<div class="col-md-3 right">{{getTotalMenuPrice()}} SEK</div>

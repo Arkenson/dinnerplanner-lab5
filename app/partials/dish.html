@@ -17,11 +17,11 @@
 		<div class="col-md-4 yellow-color" style="margin-top:18px;">
 			<div class="row" ng-repeat="ingredient in dish.Ingredients track by $index">
 				<font class="left left-padding">
-				{{ingredient.MetricDisplayQuantity}} {{ingredient.MetricUnit}} {{ingredient.Name}}</font>
-				<font class="right right-padding">{{ingredient.MetricQuantity}} SEK</font><br/>
+				{{ingredient.Quantity}} {{ingredient.Unit}} {{ingredient.Name}}</font>
+				<font class="right right-padding">{{ingredient.Quantity}} SEK</font><br/>
 			</div>
 			____________________________________________ <br/>
-			<button style="margin-top:8px; margin-bottom:8px;" id='goBack' class='btn btn-warning left'>Confirm dish</button> <font class="right" style="margin-top:8px;"> SEK</font>
+			<button style="margin-top:8px; margin-bottom:8px;" class='btn btn-warning left' ng-click="confirmDish(dish)" ng-model="menu" ng-change="addDishToMenu(dish)">Confirm dish</button> <font class="right" style="margin-top:8px;"> {{getTotalDishPrice(dish)}} SEK</font>
 	</div>
 </div>
 <div class="row">

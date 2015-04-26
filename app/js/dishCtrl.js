@@ -10,6 +10,12 @@ dinnerPlannerApp.controller('DishCtrl', function ($scope,$routeParams,Dinner) {
 
   $scope.dish = Dinner.Dish.get({id:$routeParams.dishId});
 
-  console.log($scope.dish);
+  $scope.confirmDish = function(dish) {
+  	Dinner.addDishToMenu(dish);
+  }
+
+  $scope.getTotalDishPrice = function(dish) {
+  	return Dinner.getTotalDishPrice(dish);
+  }
   
 });

@@ -46,16 +46,16 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     this.getAllIngredients = function (category) {
         var ingredients = [];
         for (i in menu) {
-            if (category == undefined) {
+            /*if (category == undefined) {
                 for (var j = 0; j < menu[i].Ingredients.length; j++) {
                     ingredients.push(menu[i].Ingredients[j]);
                 }
-            }
-            if (menu[i].Category == category) {
+            }*/
+            //if (menu[i].Category == category) {
                 for (var j = 0; j < menu[i].Ingredients.length; j++) {
                     ingredients.push(menu[i].Ingredients[j]);
                 }
-            }
+            //}
         }
         return ingredients;     // Returns an empty list if no item of that type on menu, or a list with all the ingredients for that item on the menu.
     }
@@ -67,26 +67,23 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
         for (var i = 0; i < ingredients.length; i++) {
             totalPrice += ingredients[i].Quantity;
         }
-
-
         return (parseFloat(totalPrice).toFixed(2) * numberOfGuests);  // Returns the total cost of all ingredients, is >= 0.
+    }
+
+    this.getTotalDishPrice = function(dish) {
+        var totalPrice = 0;
+        var ingredients = dish.Ingredients;
+
+        for (var i = 0; i < ingredients.length; i++) {
+            totalPrice += ingredients[i].Quantity;
+        }
+        return (parseFloat(totalPrice).toFixed(2) * numberOfGuests);
     }
 
     //Adds the passed dish to the menu. If the dish of that type already exists on the menu
     //it is removed from the menu and the new one added.
-    this.addDishToMenu = function (id) {
-        /*var apiKey = "dvxkRYZj71vL8irJQo33bFG3o6U34O8K";
-        var url = "http://api.bigoven.com/recipe/"
-                  + id
-                  + "?api_key=" + apiKey;
-        $.ajax({
-            type: "GET",
-            dataType: 'json',
-            cache: false,
-            url: url,
-            success: function (data) { */  
-
-
+    this.addDishToMenu = function (data) {
+    
         console.log("1. Adding a dish")
         var found = false;
         for (i in menu) {
@@ -103,9 +100,6 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
             console.log("2. Added the dish (newly added)", data.Title)
             console.log(menu)
         }
-
-            //}
-        //});
 
     }
 
