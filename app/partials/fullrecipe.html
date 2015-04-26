@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="row yellow-color">
+		<div class="col-md-10">
+			<h2>My dinner: {{getNumberOfGuests()}}</h2>
+		</div>
+		<div class="col-md-2">
+			<a href="#/search" style="margin-top:18px" class='btn btn-warning'>Go back and edit dinner</a>
+		</div>
+	</div>
+
+	<div class="row" ng-repeat="item in menu track by $index">
+		<div class="col-md-3">
+			<img ng-src="{{item.ImageURL}}" width="70%"/>
+		</div>
+		<div class="col-md-4">
+			<h2>{{item.Title}}</h2>
+		</div>
+		<div class="col-md-5">
+			<h3>Preparation</h3>
+			{{item.Description}}
+		</div>
+
+
+</div>

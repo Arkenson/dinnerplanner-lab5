@@ -17,7 +17,7 @@
 		<div class="col-md-4 yellow-color" style="margin-top:18px;">
 			<div class="row" ng-repeat="ingredient in dish.Ingredients track by $index">
 				<font class="left left-padding">
-				{{ingredient.Quantity}} {{ingredient.Unit}} {{ingredient.Name}}</font>
+				{{ingredient.Quantity}}{{ingredient.Unit}} {{ingredient.Name}}</font>
 				<font class="right right-padding">{{ingredient.Quantity}} SEK</font><br/>
 			</div>
 			____________________________________________ <br/>
@@ -29,7 +29,7 @@
 
 	</div>
 	<div class="col-md-9">
-<button style="margin-top:18px" id='goBack' class='btn btn-warning'>Back to Select Dish</button>
+<a href="#/search" style="margin-top:18px" class='btn btn-warning'>Back to Select Dish</a>
 	</div>
 </div>
 

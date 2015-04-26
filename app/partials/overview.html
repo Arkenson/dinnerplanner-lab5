@@ -1,0 +1,42 @@
+<div class="container">
+	<div class="row yellow-color">
+		<div class="col-md-10">
+			<h2>My dinner: {{getNumberOfGuests()}}</h2>
+		</div>
+		<div class="col-md-2">
+			<a href="#/search" style="margin-top:18px" class='btn btn-warning'>Go back and edit dinner</a>
+		</div>
+	</div>
+
+	<div class="row">
+
+		<style type="text/css">
+			.result_box {
+				width: 20%;
+				margin: 0px;
+				display: inline-table;
+				padding: 2%;
+			}
+			</style>
+	<div class="col-md-8">
+		<div class="result_box" ng-repeat="item in menu track by $index">
+            	<img ng-src="{{item.ImageURL}}" width="100%"/>
+				<br/>
+				<font size="4">{{item.Title}}</font>
+				<br/>
+				{{getTotalDishPrice(item)}} SEK
+        </div>
+    </div>
+    <div class="col-md-4">
+    	Total:<br/>
+    	{{getTotalMenuPrice()}} SEK
+    </div>
+    <div class="row">
+    	<div class="col-md-5"></div>
+    	<div class="col-md-2">
+    		<a href="#/fullrecipe" class="btn btn-warning">Print full recipe</a>
+    	</div>
+    	<div class="col-md-5"></div>
+    </div>
+
+</div> 
