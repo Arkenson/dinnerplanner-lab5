@@ -3,12 +3,51 @@
 // dependency on any service you need. Angular will insure that the
 // service is created first time it is needed and then just reuse it
 // the next time.
-dinnerPlannerApp.factory('Dinner',function ($resource) {
+dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
 
     //Fields
-    var numberOfGuests = 1;
     var menu = [];
     var selectedDishID = 1;
+
+    this.getStoredinCookieDish = function (id) {
+        var apiKey = "dvxkRYZj71vL8irJQo33bFG3o6U34O8K";
+        var url = "http://api.bigoven.com/recipe/"
+                  + id
+                  + "?api_key=" + apiKey;
+        $.ajax({
+            type: "GET",
+            dataType: 'json',
+            cache: false,
+            url: url,
+            success: function (data) { 
+                console.log(data);
+                menu.push(data);
+            }
+        });
+    }
+
+    this.menuInit = function(){
+        if($cookieStore.get('1337') != null){
+            for(var i = 0; i < $cookieStore.get('1337'); i++){
+                var getId = $cookieStore.get(i);
+                this.getStoredinCookieDish(getId);
+            }
+            console.log(menu);
+        }
+    }
+
+    this.menuInit();
+
+    this.numberInit = function(){
+        if($cookieStore.get('numberOfGuests') != null){
+            return $cookieStore.get('numberOfGuests')
+        } 
+        else{
+               return 1
+            }
+    }
+
+    var numberOfGuests = this.numberInit();
 
     this.getSelectedDishID = function () {
         return selectedDishID;
@@ -21,6 +60,7 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     //Sets the number of guests
     this.setNumberOfGuests = function (num) {
         numberOfGuests = num;
+        $cookieStore.put('numberOfGuests', num);
     }
 
     //Returns the number of guests
@@ -46,16 +86,9 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     this.getAllIngredients = function (category) {
         var ingredients = [];
         for (i in menu) {
-            /*if (category == undefined) {
                 for (var j = 0; j < menu[i].Ingredients.length; j++) {
                     ingredients.push(menu[i].Ingredients[j]);
                 }
-            }*/
-            //if (menu[i].Category == category) {
-                for (var j = 0; j < menu[i].Ingredients.length; j++) {
-                    ingredients.push(menu[i].Ingredients[j]);
-                }
-            //}
         }
         return ingredients;     // Returns an empty list if no item of that type on menu, or a list with all the ingredients for that item on the menu.
     }
@@ -83,13 +116,14 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     //Adds the passed dish to the menu. If the dish of that type already exists on the menu
     //it is removed from the menu and the new one added.
     this.addDishToMenu = function (data) {
-    
         console.log("1. Adding a dish")
         var found = false;
         for (i in menu) {
             if (menu[i].Category == data.Category) {
                 menu.pop(menu[i]);
                 menu.push(data)
+                $cookieStore.put(i, data.RecipeID);
+                $cookieStore.put('1337', menu.length);
                 found = true;
                 console.log("2. Added the dish (already existed) ", data.Title)
             }
@@ -97,9 +131,13 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
         if (!found) {
             console.log(menu)
             menu.push(data);
+            $cookieStore.put(menu.length - 1, data.RecipeID);
+            $cookieStore.put('1337', menu.length);
             console.log("2. Added the dish (newly added)", data.Title)
             console.log(menu)
         }
+
+        
 
     }
 
@@ -112,6 +150,8 @@ dinnerPlannerApp.factory('Dinner',function ($resource) {
     this.removeDishFromMenu = function (id) {
         menu.pop(dishes[id]);
     }
+
+
 
 
 //BigOven API calls
